@@ -6,6 +6,7 @@ Created on Sat Nov 28 21:39:32 2020
 @author: hassanpasha
 """
 
+import datetime
 
 class scheduler: 
     
@@ -159,9 +160,23 @@ class scheduler:
             
         return sorted(set(new_list+temp_data), key=lambda x: x[0])
         
-        
-        
+    '''
+    Convert any militry time list into 12 hour format 
+    returns lists of the converted time 
+    returns type List[str]
+    '''        
 
+    def convert_militry_time(self,militry_list):
+        time_list = []
+        for time in militry_list:
+            start_time = f"{time[0]}:00"
+            start_time = datetime.datetime.strptime(start_time, "%H:%M").strftime("%I:%M %p")
+            end_time = f"{time[1]}:00"
+            end_time = datetime.datetime.strptime(end_time, "%H:%M").strftime("%I:%M %p")
+            time_list.append((start_time,end_time))
+        return time_list 
+        
+   
 
 #########
 Test_Case_1 =  {
